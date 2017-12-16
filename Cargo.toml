@@ -1,0 +1,16 @@
+[package]
+authors = ["Splinter Suidman"]
+name = "perceptron"
+version = "0.1.0"
+
+[[bin]]
+name = "line"
+path = "./src/line.rs"
+
+[[bin]]
+name = "and_or"
+path = "./src/and_or.rs"
+
+[dependencies]
+piston_window = "0.74.0"
+rand = "0.3.18"
