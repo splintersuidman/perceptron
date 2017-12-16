@@ -24,6 +24,18 @@ fn main() {
         .exit_on_esc(true).build().unwrap();
 
     while let Some(e) = window.next() {
+        if let Some(button) = e.press_args() {
+            use piston_window::Button::{Keyboard, Mouse};
+            use piston_window::Key::Space;
+
+            match button {
+                Keyboard(Space) | Mouse(_) => {
+                    points = Vec::new();
+                },
+                _ => (),
+            }
+        }
+
         window.draw_2d(&e, |c, g| {
             // Clear window.
             clear([1.; 4], g);
@@ -35,18 +47,6 @@ fn main() {
                 c.transform,
                 g
             );
-
-            if let Some(button) = e.press_args() {
-                use piston_window::Button::{Keyboard, Mouse};
-                use piston_window::Key::Space;
-
-                match button {
-                    Keyboard(Space) | Mouse(_) => {
-                        points.clear();
-                    },
-                    _ => (),
-                }
-            }
 
             // Draw perceptron's seperation line.
             let weights = perceptron.weights.clone();
